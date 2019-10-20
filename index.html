@@ -1,154 +1,168 @@
-<html><head>
+<html>
+
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-    
+
     <script src="./html2canvas.js"></script>
-  
-      <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-  
-        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <style id="compiled-css" type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Bitter);
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  html {
-    text-align: center;
-    padding-top: 50px;
-  }
-  
-  blockquote {
-    display: inline-block;
-    border-radius: 10px;
-    font-family: 'Bitter', serif;
-    color: #333;
-    text-align: left;
-  
-  }
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            text-align: center;
+            padding-top: 50px;
+        }
+        
+        blockquote {
+            display: inline-block;
+            border-radius: 10px;
+            font-family: 'Bitter', serif;
+            color: #333;
+            text-align: left;
+        }
+        
+        .item {
+            background: #eee;
+            color: #333;
+            width: 400px;
+            height: 500px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid black;
+        }
+        
+        .item .row {
+            font-size: 30px;
+            border-radius: 10px;
+            font-family: 'Bitter', serif;
+        }
+        
+        .item small {
+            font-size: 20px;
+        }
+        
+        .item p {
+            margin-top: 0;
+        }
+        
+        .item i {
+            font-size: 30px;
+        }
 
-  .item {
-      background: #eee;
-      color: #333;
-      width: 400px;
-      height: 500px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      border: 3px solid black;
-  }
+        form > div {
+          margin-bottom: 10px;
+        }
 
-  .item .row {
-      
-      font-size: 30px;
-    border-radius: 10px;
-    font-family: 'Bitter', serif;
-  }
+        .image-container {
+          display: flex;
+          justify-content: center;
+        }
 
-  .item small {
-    font-size: 20px;
-  }
-  
-  .item  p {
-    
-    margin-top: 0;
-  }
-  
-.item i {
-  font-size: 30px;
-}
+        .image-container-start {
+          justify-content: flex-start;
+        }
 
-  /* .item  p:before {
-      content: "\f10d";
-      font-family: 'Fontawesome';
-      margin-right: 10px;
-  }
-  
-  .item  p:after {
-      content: "\f10e";
-      font-family: 'Fontawesome';
-      margin-left: 10px;
-  } */
+        .image-container .canvas {
+          margin-left: 10px;
+        }
     </style>
-  
 
-  
-  </head>
-  <body>
+</head>
+
+<body>
     <div>
         <form>
-            <input placeholder="quote" type="text" id="quote"/>
-            <input placeholder="author" type="text" id="author" />
-            <input placeholder="#fff" type="text" id="bg"/>
-            <input placeholder="#fff" type="text" id="font"/>
-            <input placeholder="image" type="text" id="filename"/>
-            <input value="generate" type="button" id="btn"/>
-          </form>
+            <div>
+                <input placeholder="quote" type="text" id="quote" />
+            </div>
+            <div>
+                <input placeholder="author" type="text" id="author" />
+            </div>
+            <div>
+                <input placeholder="background color eg: #fff" type="text" id="bg" />
+            </div>
+            <div>
+                <input placeholder="font color eg: #fff" type="text" id="font" />
+            </div>
+            <div>
+                <input placeholder="filename" type="text" id="filename" />
+            </div>
+            <div>
+                <input value="generate" type="button" id="btn" />
+            </div>
+        </form>
     </div>
-    <div style="display: flex;">
-      <div class="item active">
-          <div class="child">
-              <i class="fa fa-quote-left" aria-hidden="true"></i>
-          </div>
-          <div class="child" style="flex: 1;position: relative">
-            <div class="row" style="position: absolute;top: 50%;transform: translateY(-50%);">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <p id="quotep">Stay hungry stay foolish</p>
-                    <small id="authorp">- Steve Jobs</small>
+    <div class="image-container">
+        <div class="item active">
+            <div class="child">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+            </div>
+            <div class="child" style="flex: 1;position: relative">
+                <div class="row" style="position: absolute;top: 50%;transform: translateY(-50%);">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <p id="quotep">Stay hungry stay foolish</p>
+                        <small id="authorp">- Steve Jobs</small>
+                    </div>
                 </div>
             </div>
-          </div>
-          <div class="child">
-              <i class="fa fa-quote-right" aria-hidden="true"></i>
-          </div>
+            <div class="child">
+                <i class="fa fa-quote-right" aria-hidden="true"></i>
+            </div>
         </div>
-        <div id="canvas" style="margin-left: 20px;">
+        <div id="canvas" class="canvas" style="justify-content: center;">
         </div>
         <a href="#" id="downloader" onclick="download()" download="image.jpeg" style="display: none">Download!</a>
     </div>
-    
+
     <script>
-      var author = document.querySelector('#author');
-      var quote = document.querySelector('#quote');
-      var bg = document.querySelector('#bg');
-      var font = document.querySelector('#font');
-      var btn = document.querySelector('#btn');
-      author.addEventListener('input', function() {
-        document.querySelector('#authorp').innerText = "- " + author.value;
-      });
-
-      quote.addEventListener('input', function() {
-        document.querySelector('#quotep').innerHTML = quote.value;
-      });
-
-      bg.addEventListener('input', function() {
-        document.querySelector('.item').style.background = bg.value;
-      });
-
-      font.addEventListener('input', function() {
-        document.querySelector('.item').style.color = font.value;
-      });
-
-      btn.addEventListener('click', function() {
-        html2canvas(document.querySelector(".item")).then(canvas => {
-            document.querySelector("#canvas").innerHTML = "";
-            document.querySelector("#canvas").appendChild(canvas);
-            document.querySelector("#downloader").download = document.querySelector("#filename").value;
-            document.querySelector("#downloader").href = canvas.toDataURL("image/jpeg", 1.0).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-            document.querySelector("#downloader").click()
+        var author = document.querySelector('#author');
+        var quote = document.querySelector('#quote');
+        var bg = document.querySelector('#bg');
+        var font = document.querySelector('#font');
+        var btn = document.querySelector('#btn');
+        author.addEventListener('input', function() {
+            document.querySelector('#authorp').innerText = "- " + author.value;
         });
-      });
 
-      
+        quote.addEventListener('input', function() {
+            document.querySelector('#quotep').innerHTML = quote.value;
+        });
+
+        bg.addEventListener('input', function() {
+            document.querySelector('.item').style.background = bg.value;
+        });
+
+        font.addEventListener('input', function() {
+            document.querySelector('.item').style.color = font.value;
+        });
+
+        btn.addEventListener('click', function() {
+            var imgContainer = document.querySelector('.image-container');
+            imgContainer.className = "image-container image-container-start";
+            html2canvas(document.querySelector(".item")).then(canvas => {
+              imgContainer.className = "image-container";
+                document.querySelector("#canvas").innerHTML = "";
+                document.querySelector("#canvas").appendChild(canvas);
+                document.querySelector("#downloader").download = document.querySelector("#filename").value;
+                document.querySelector("#downloader").href = canvas.toDataURL("image/jpeg", 1.0).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+                document.querySelector("#downloader").click()
+            });
+        });
     </script>
-  
-  
-  </body></html>
+
+</body>
+
+</html>

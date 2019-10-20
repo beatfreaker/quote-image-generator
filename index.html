@@ -87,6 +87,8 @@
         <form>
             <input placeholder="quote" type="text" id="quote"/>
             <input placeholder="author" type="text" id="author" />
+            <input placeholder="#fff" type="text" id="bg"/>
+            <input placeholder="#fff" type="text" id="font"/>
             <input placeholder="image" type="text" id="filename"/>
             <input value="generate" type="button" id="btn"/>
           </form>
@@ -116,6 +118,8 @@
     <script>
       var author = document.querySelector('#author');
       var quote = document.querySelector('#quote');
+      var bg = document.querySelector('#bg');
+      var font = document.querySelector('#font');
       var btn = document.querySelector('#btn');
       author.addEventListener('input', function() {
         document.querySelector('#authorp').innerText = "- " + author.value;
@@ -123,6 +127,14 @@
 
       quote.addEventListener('input', function() {
         document.querySelector('#quotep').innerHTML = quote.value;
+      });
+
+      bg.addEventListener('input', function() {
+        document.querySelector('.item').style.background = bg.value;
+      });
+
+      font.addEventListener('input', function() {
+        document.querySelector('.item').style.color = font.value;
       });
 
       btn.addEventListener('click', function() {

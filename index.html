@@ -86,10 +86,10 @@
     <div>
         <form>
             <div>
-                <input placeholder="quote" type="text" id="quote" />
+                <input placeholder="quote" type="text" id="quote" value="Stay hungry stay foolish" />
             </div>
             <div>
-                <input placeholder="author" type="text" id="author" />
+                <input placeholder="author" type="text" id="author" value="Steve Jobs"/>
             </div>
             <div>
                 <input placeholder="background color eg: #fff" type="text" id="bg" />
@@ -140,6 +140,20 @@
         var font = document.querySelector('#font');
         var btn = document.querySelector('#btn');
         var format = document.querySelector("#format");
+
+        function validate() {
+          if(quote.value.trim().length === 0) {
+            return "Quote cannot be empty";
+          }
+          if(author.value.trim().length === 0) {
+            return "Author cannot be empty";
+          }
+          if(filename.value.trim().length === 0) {
+            return "Filename cannot be empty";
+          }
+          return "";
+        }
+
         author.addEventListener('input', function() {
             document.querySelector('#authorp').innerText = "- " + author.value;
         });
@@ -157,6 +171,11 @@
         });
 
         btn.addEventListener('click', function() {
+            var validationStr = validate();
+            if(validationStr != "") {
+              alert(validationStr);
+              return;
+            }
             var imgContainer = document.querySelector('.image-container');
             imgContainer.className = 'image-container image-container-start';
             html2canvas(document.querySelector('.item')).then(canvas => {

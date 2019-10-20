@@ -1,0 +1,142 @@
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    
+    <script src="./html2canvas.js"></script>
+  
+      <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+    <style id="compiled-css" type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Bitter);
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    text-align: center;
+    padding-top: 50px;
+  }
+  
+  blockquote {
+    display: inline-block;
+    border-radius: 10px;
+    font-family: 'Bitter', serif;
+    color: #333;
+    text-align: left;
+  
+  }
+
+  .item {
+      background: #eee;
+      color: #333;
+      width: 400px;
+      height: 500px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border: 3px solid black;
+  }
+
+  .item .row {
+      
+      font-size: 30px;
+    border-radius: 10px;
+    font-family: 'Bitter', serif;
+  }
+
+  .item small {
+    font-size: 20px;
+  }
+  
+  .item  p {
+    
+    margin-top: 0;
+  }
+  
+.item i {
+  font-size: 30px;
+}
+
+  /* .item  p:before {
+      content: "\f10d";
+      font-family: 'Fontawesome';
+      margin-right: 10px;
+  }
+  
+  .item  p:after {
+      content: "\f10e";
+      font-family: 'Fontawesome';
+      margin-left: 10px;
+  } */
+    </style>
+  
+
+  
+  </head>
+  <body>
+    <div>
+        <form>
+            <input placeholder="quote" type="text" id="quote"/>
+            <input placeholder="author" type="text" id="author" />
+            <input placeholder="image" type="text" id="filename"/>
+            <input value="generate" type="button" id="btn"/>
+          </form>
+    </div>
+    <div style="display: flex;">
+      <div class="item active">
+          <div class="child">
+              <i class="fa fa-quote-left" aria-hidden="true"></i>
+          </div>
+          <div class="child" style="flex: 1;position: relative">
+            <div class="row" style="position: absolute;top: 50%;transform: translateY(-50%);">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <p id="quotep">Stay hungry stay foolish</p>
+                    <small id="authorp">- Steve Jobs</small>
+                </div>
+            </div>
+          </div>
+          <div class="child">
+              <i class="fa fa-quote-right" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div id="canvas" style="margin-left: 20px;">
+        </div>
+        <a href="#" id="downloader" onclick="download()" download="image.jpeg" style="display: none">Download!</a>
+    </div>
+    
+    <script>
+      var author = document.querySelector('#author');
+      var quote = document.querySelector('#quote');
+      var btn = document.querySelector('#btn');
+      author.addEventListener('input', function() {
+        document.querySelector('#authorp').innerText = "- " + author.value;
+      });
+
+      quote.addEventListener('input', function() {
+        document.querySelector('#quotep').innerHTML = quote.value;
+      });
+
+      btn.addEventListener('click', function() {
+        html2canvas(document.querySelector(".item")).then(canvas => {
+            document.querySelector("#canvas").innerHTML = "";
+            document.querySelector("#canvas").appendChild(canvas);
+            document.querySelector("#downloader").download = document.querySelector("#filename").value;
+            document.querySelector("#downloader").href = canvas.toDataURL("image/jpeg", 1.0).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+            document.querySelector("#downloader").click()
+        });
+      });
+
+      
+    </script>
+  
+  
+  </body></html>

@@ -101,6 +101,12 @@
                 <input placeholder="filename" type="text" id="filename" />
             </div>
             <div>
+              <select id="format">
+                <option value="jpeg" selected>JPEG</option>
+                <option value="png">PNG</option>
+              </select>
+            </div>
+            <div>
                 <input value="generate" type="button" id="btn" />
             </div>
         </form>
@@ -133,6 +139,7 @@
         var bg = document.querySelector('#bg');
         var font = document.querySelector('#font');
         var btn = document.querySelector('#btn');
+        var format = document.querySelector("#format");
         author.addEventListener('input', function() {
             document.querySelector('#authorp').innerText = "- " + author.value;
         });
@@ -151,14 +158,14 @@
 
         btn.addEventListener('click', function() {
             var imgContainer = document.querySelector('.image-container');
-            imgContainer.className = "image-container image-container-start";
-            html2canvas(document.querySelector(".item")).then(canvas => {
-              imgContainer.className = "image-container";
-                document.querySelector("#canvas").innerHTML = "";
-                document.querySelector("#canvas").appendChild(canvas);
-                document.querySelector("#downloader").download = document.querySelector("#filename").value;
-                document.querySelector("#downloader").href = canvas.toDataURL("image/jpeg", 1.0).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-                document.querySelector("#downloader").click()
+            imgContainer.className = 'image-container image-container-start';
+            html2canvas(document.querySelector('.item')).then(canvas => {
+              imgContainer.className = 'image-container';
+                document.querySelector('#canvas').innerHTML = '';
+                document.querySelector('#canvas').appendChild(canvas);
+                document.querySelector('#downloader').download = document.querySelector('#filename').value + '.' + format.value;
+                document.querySelector('#downloader').href = canvas.toDataURL('image/'+ format.value, 1.0).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+                document.querySelector('#downloader').click()
             });
         });
     </script>
